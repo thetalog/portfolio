@@ -249,3 +249,39 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
+
+function sendEmail(event) {
+      event.preventDefault(); // Prevent the form from submitting the default way
+  
+    // Get form values
+    const name = document.querySelector('input[name="name"]').value;
+    const email = document.querySelector('input[name="email"]').value;
+    const subject = document.querySelector('input[name="subject"]').value;
+    const message = document.querySelector('textarea[name="message"]').value;
+  
+    // Construct the data object
+    const data = {
+      name: name,git
+      email: email,
+      subject: subject,
+      message: message
+    };
+    // Send email using EmailJS
+    emailjs.send('service_bex7bbf', 'template_2t1fluz', data)
+      .then((response) => {
+        console.log('Email sent successfully:', response);
+        document.querySelector('.sent-message').style.display = 'block';
+        document.querySelector('.error-message').style.display = 'none';
+      })
+      .catch((error) => {
+        console.error('Error sending email:', error);
+        document.querySelector('.sent-message').style.display = 'none';
+        document.querySelector('.error-message').textContent = 'Sorry, something went wrong. Please try again.';
+        document.querySelector('.error-message').style.display = 'block';
+      });
+  }
+  
+  // Add event listener to the form
+  document.querySelector('#contact-submit-btn').addEventListener('click', sendEmail);
+   
