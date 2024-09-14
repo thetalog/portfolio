@@ -262,7 +262,7 @@ function sendEmail(event) {
   
     // Construct the data object
     const data = {
-      name: name,git
+      name: name,
       email: email,
       subject: subject,
       message: message
